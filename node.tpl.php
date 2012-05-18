@@ -77,27 +77,30 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
+
+hide($content['links']);
+hide($content['field_tags']);
+
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
   <article>
     <header>
       <?php if (!$page): ?>
-        <h1><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h1>
+				<headergroup>
+					<h4><?php print render($content['field_tags']) ?></h4>
+        	<h1><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h1>
+				</headergroup>
       <?php endif; ?>
 
       <p>
         <?php if ($display_submitted): ?>
-          <?php print $submitted ?> <time datetime="<?php print format_date($created) ?>"><?php print format_date($created, 'short') ?></time>
+          <?php print $submitted ?> <time datetime="<?php print format_date($created, 'custom', 'Y-m-d') ?>"><?php print format_date($created, 'custom', 'Y-m-d') ?></time>
         <?php endif ?>
       </p>
     
     </header>
 
-    <?php 
-      // Hide what we do not need
-      hide($content['links']);
-
-      print render($content) ?>
+    <?php print render($content) ?>
   
   </article>
 </div>

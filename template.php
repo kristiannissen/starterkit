@@ -8,7 +8,7 @@ function starterkit_preprocess_block(&$variables) {
 	}
 	
 	if ($block->module == 'system' && $block->delta == 'main') {
-
+		
 	}
 }
 
@@ -95,15 +95,15 @@ function starterkit_field__body($vars) {
 
   return $output;
 }
-# FIXME: This is not working
-function starterkit_field__tags($vars) {
+
+function starterkit_field__field_tags__article($vars) {
 	$output = '';
 	
 	foreach ($vars['items'] as $delta => $item) {
 		$output .= render($item);
 	}
 	
-	return '<strong>'. $output .'</strong>';
+	return $output;
 }
 
 function starterkit_button($variables) {

@@ -23,12 +23,10 @@
 			<?php print $messages ?>
 		<?php endif ?>
 		
-		<?php if ($is_front): ?>
-			<?php if ($page['herounit']): ?>
-				<div class="hero-unit">
-					<?php print render($page['herounit']) ?>
-				</div>
-			<?php endif ?>
+		<?php if ($page['herounit']): ?>
+			<div class="hero-unit">
+				<?php print render($page['herounit']) ?>
+			</div>
 		<?php endif ?>
 	
 		<?php if ($page['content']): ?>
