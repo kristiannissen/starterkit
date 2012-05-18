@@ -1,6 +1,6 @@
 <?php
 
-function dhbsk_preprocess_block(&$variables) {
+function starterkit_preprocess_block(&$variables) {
 	$block = $variables['block'];
 	
 	if (in_array($block->region, array('sidebar', 'herounit', 'footer'))) {
@@ -12,7 +12,7 @@ function dhbsk_preprocess_block(&$variables) {
 	}
 }
 
-function dhbsk_form_alter(&$form, &$form_state, $form_id) {
+function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	if ($form_id == 'user_login_block') {
 		// user_login_block is a well
 		$form['#attributes'] = array(
@@ -34,7 +34,7 @@ function dhbsk_form_alter(&$form, &$form_state, $form_id) {
 	}
 }
 
-function dhbsk_status_messages($variables) {
+function starterkit_status_messages($variables) {
 	$display = $variables['display'];
   $output = '';
 
@@ -77,7 +77,7 @@ function dhbsk_status_messages($variables) {
   return $output;
 }
 
-function dhbsk_css_alter(&$css) {
+function starterkit_css_alter(&$css) {
   foreach ($css as $mod => $val) {
     // Remove modules
     if (stripos($mod, 'modules') !== false) {
@@ -86,7 +86,7 @@ function dhbsk_css_alter(&$css) {
   }
 }
 
-function dhbsk_field__body($vars) {
+function starterkit_field__body($vars) {
   $output = '';
 
   foreach ($vars['items'] as $delta => $item) {
@@ -96,7 +96,7 @@ function dhbsk_field__body($vars) {
   return $output;
 }
 # FIXME: This is not working
-function dhbsk_field__tags($vars) {
+function starterkit_field__tags($vars) {
 	$output = '';
 	
 	foreach ($vars['items'] as $delta => $item) {
@@ -106,7 +106,7 @@ function dhbsk_field__tags($vars) {
 	return '<strong>'. $output .'</strong>';
 }
 
-function dhbsk_button($variables) {
+function starterkit_button($variables) {
 	$element = $variables['element'];
   $element['#attributes']['type'] = 'submit';
   element_set_attributes($element, array('id', 'name', 'value'));
@@ -119,7 +119,7 @@ function dhbsk_button($variables) {
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
 
-function dhbsk_container($variables) {
+function starterkit_container($variables) {
   $element = $variables['element'];
 
   // Special handling for form elements.
@@ -135,7 +135,7 @@ function dhbsk_container($variables) {
   return $element['#children'];
 }
 
-function dhbsk_form_element($variables) {
+function starterkit_form_element($variables) {
   $element = &$variables['element'];
   // This is also used in the installer, pre-database setup.
   $t = get_t();
@@ -199,7 +199,7 @@ function dhbsk_form_element($variables) {
   return $output;
 }
 
-function dhbsk_radios($variables) {
+function starterkit_radios($variables) {
   $element = $variables['element'];
   
   return $element['#children'];
