@@ -11,7 +11,7 @@ function starterkit_preprocess_block(&$variables) {
 		
 	}
 }
-
+// TODO: Use FORM_ID instead of global function
 function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	if ($form_id == 'user_login_block') {
 		// user_login_block is a well
@@ -32,6 +32,41 @@ function starterkit_form_alter(&$form, &$form_state, $form_id) {
 		);
 		unset($form['search_block_form']['#title']);
 	}
+	
+	if ($form_id == 'user_register_form') {
+		$form['#attributes'] = array(
+			'class' => array('form-horizontal'),
+		);
+	}
+}
+
+function starterkit_image_formatter($variables) {
+	$item = $variables['item'];
+  $image = array(
+    'path' => $item['uri'], 
+    'alt' => $item['alt'],
+  );
+
+  if (isset($item['attributes'])) {
+    $image['attributes'] = $item['attributes'];
+  }
+
+  // Do not output an empty 'title' attribute.
+  if (drupal_strlen($item['title']) > 0) {
+    $image['title'] = $item['title'];
+  }
+
+	$output = theme('image', $image);
+
+  if (!empty($variables['path']['path'])) {
+    $path = $variables['path']['path'];
+    $options = $variables['path']['options'];
+    // When displaying an image inside a link, the html option must be TRUE.
+    $options['html'] = TRUE;
+    $output = l($output, $path, $options);
+  }
+
+  return $output;
 }
 
 function starterkit_status_messages($variables) {
@@ -104,6 +139,16 @@ function starterkit_field__field_tags__article($vars) {
 	}
 	
 	return $output;
+}
+
+function starterkit_field__field_image__article($variables) {
+	$output = '';
+	
+	foreach ($variables['items'] as $delta => $item) {
+		$output .= render($item);
+	}
+	
+	return '<figure>'. $output .'</figure>';
 }
 
 function starterkit_button($variables) {
@@ -198,9 +243,45 @@ function starterkit_form_element($variables) {
 
   return $output;
 }
-
+// TODO: Should be wrapper according to http://twitter.github.com/bootstrap/base-css.html#forms
 function starterkit_radios($variables) {
   $element = $variables['element'];
-  
-  return $element['#children'];
+
+  return '<div class="control-group"><div class="controls">'. $element['#children'] .'</div></div>';
+}
+
+function starterkit_radio($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'radio';
+  element_set_attributes($element, array('id', 'name','#return_value' => 'value'));
+
+  if (isset($element['#return_value']) && $element['#value'] !== FALSE && $element['#value'] == $element['#return_value']) {
+    $element['#attributes']['checked'] = 'checked';
+  }
+  _form_set_class($element, array('form-radio'));
+
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
+}
+# FIXME: Notice: Undefined variable: output in starterkit_textarea()
+function starterkit_textarea($variables) {
+	$element = $variables['element'];
+  element_set_attributes($element, array('id', 'name', 'cols', 'rows'));
+  _form_set_class($element, array('form-textarea'));
+
+  $wrapper_attributes = array(
+    'class' => array('form-textarea-wrapper'),
+  );
+
+  // Add resizable behavior.
+  if (!empty($element['#resizable'])) {
+    drupal_add_library('system', 'drupal.textarea');
+    $wrapper_attributes['class'][] = 'resizable';
+  }
+
+	// Add bootstrap CSS class
+	$element['#attributes']['class'][] = 'input-xlarge';
+
+  $output = '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
+
+  return $output;
 }
