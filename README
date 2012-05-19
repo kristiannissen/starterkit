@@ -1,8 +1,12 @@
 This is a HTML5 Boilerplate Starter kit for Drupal 7
 
-After several theming projects where I had to overwrite tons and tons of theming functions in order to
-implement the desired HTML front end code, I decided to create a starter kit with the purpose to reduce
-the time it takes to get starter on new theming projects.
+After several theming projects where I had to overwrite tons and tons of theming functions in order to implement the desired HTML front end code, I decided to create a starter kit with the purpose to reduce the time it takes to get starter on new theming projects.
 
-Building a Drupal theme based on existing HTML markup should be easier - the soal purpose of this project
-is exactly that! Reduce the time it takes to get started.
+Building a Drupal theme based on existing HTML markup should be easier - the soal purpose of this project is exactly that! Reduce the time it takes to get started.
+
+Getting started
+CD into your themes directory >>cd sites/all/themes<< and clone this project into the disired theme project >>git clone git@github.com:kristiannissen/drupal7html5boilerplatestarterkit.git bluepoc<< where bluepoc is the name of my custom theme.
+
+Open template.php using your favorite editor and replace "starterkit" with the name of your custom theme name.
+
+That's it, now your ready to build your website :)
