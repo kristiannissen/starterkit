@@ -23,7 +23,7 @@ function starterkit_preprocess_region(&$variables) {
   $variables['classes_array'][] = 'row-fluid';
 }
 /**
- * template_form_alter()
+ * template_form_alter(&$form, &$form_state, $form_id)
  */
 function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	if ($form_id == 'user_login_block') {
@@ -52,7 +52,9 @@ function starterkit_form_alter(&$form, &$form_state, $form_id) {
 		);
 	}
 }
-
+/**
+ * theme_image_formatter($variables)
+ */
 function starterkit_image_formatter($variables) {
 	$item = $variables['item'];
   $image = array(
@@ -81,7 +83,9 @@ function starterkit_image_formatter($variables) {
 
   return $output;
 }
-
+/**
+ * theme_status_messages($variables)
+ */
 function starterkit_status_messages($variables) {
 	$display = $variables['display'];
   $output = '';
@@ -124,7 +128,9 @@ function starterkit_status_messages($variables) {
   }
   return $output;
 }
-
+/**
+ * TODO: Document this
+ */
 function starterkit_css_alter(&$css) {
   foreach ($css as $mod => $val) {
     // Remove modules
@@ -133,7 +139,9 @@ function starterkit_css_alter(&$css) {
     }
   }
 }
-
+/**
+ * TODO: Document this
+ */
 function starterkit_field__body($vars) {
   $output = '';
 
@@ -143,7 +151,9 @@ function starterkit_field__body($vars) {
 
   return $output;
 }
-
+/**
+ * TODO: Document this
+ */
 function starterkit_field__field_tags__article($vars) {
 	$output = '';
 	
@@ -153,7 +163,9 @@ function starterkit_field__field_tags__article($vars) {
 	
 	return $output;
 }
-
+/**
+ * TODO: Document this
+ */
 function starterkit_field__field_image__article($variables) {
 	$output = '';
 	
@@ -163,7 +175,9 @@ function starterkit_field__field_image__article($variables) {
 	
 	return '<figure>'. $output .'</figure>';
 }
-
+/**
+ * theme_button($variables)
+ */
 function starterkit_button($variables) {
 	$element = $variables['element'];
   $element['#attributes']['type'] = 'submit';
@@ -176,7 +190,9 @@ function starterkit_button($variables) {
 
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
-
+/**
+ * theme_container($variables)
+ */
 function starterkit_container($variables) {
   $element = $variables['element'];
 
@@ -192,7 +208,9 @@ function starterkit_container($variables) {
 
   return $element['#children'];
 }
-
+/**
+ * theme_form_element($variables)
+ */
 function starterkit_form_element($variables) {
   $element = &$variables['element'];
   // This is also used in the installer, pre-database setup.
@@ -256,13 +274,18 @@ function starterkit_form_element($variables) {
 
   return $output;
 }
-// TODO: Should be wrapper according to http://twitter.github.com/bootstrap/base-css.html#forms
+/**
+ * TODO: Should be wrapper according to http://twitter.github.com/bootstrap/base-css.html#forms
+ * theme_radios($variables)
+ */
 function starterkit_radios($variables) {
   $element = $variables['element'];
 
   return '<div class="control-group"><div class="controls">'. $element['#children'] .'</div></div>';
 }
-
+/** 
+ * theme_radio($variables)
+ */
 function starterkit_radio($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'radio';
@@ -275,7 +298,10 @@ function starterkit_radio($variables) {
 
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
-# FIXME: Notice: Undefined variable: output in starterkit_textarea()
+/**
+ * theme_textarea($variables)
+ * FIXME: Notice: Undefined variable: output in starterkit_textarea()
+ */
 function starterkit_textarea($variables) {
 	$element = $variables['element'];
   element_set_attributes($element, array('id', 'name', 'cols', 'rows'));
