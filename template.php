@@ -1,7 +1,12 @@
 <?php
-
+/**
+ * template_preprocess_block($variables)
+ */
 function starterkit_preprocess_block(&$variables) {
-	$block = $variables['block'];
+	// Add .span to blocks
+  $variables['classes_array'][] = 'span';
+  
+  $block = $variables['block'];
 	
 	if (in_array($block->region, array('sidebar', 'herounit', 'footer'))) {
 		$variables['content'] = '<section>'. $variables['content'] .'</section>';
@@ -12,12 +17,14 @@ function starterkit_preprocess_block(&$variables) {
 	}
 }
 /**
- * template_preprocess_region(&$vars)
+ * template_preprocess_region(&$variables)
  */
 function starterkit_preprocess_region(&$variables) {
   $variables['classes_array'][] = 'row-fluid';
 }
-// TODO: Use FORM_ID instead of global function
+/**
+ * template_form_alter()
+ */
 function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	if ($form_id == 'user_login_block') {
 		// user_login_block is a well
