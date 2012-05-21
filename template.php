@@ -11,6 +11,12 @@ function starterkit_preprocess_block(&$variables) {
 		
 	}
 }
+/**
+ * template_preprocess_region(&$vars)
+ */
+function starterkit_preprocess_region(&$variables) {
+  $variables['classes_array'][] = 'row-fluid';
+}
 // TODO: Use FORM_ID instead of global function
 function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	if ($form_id == 'user_login_block') {

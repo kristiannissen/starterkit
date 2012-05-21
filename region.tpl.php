@@ -27,7 +27,7 @@
  */
 ?>
 <?php if ($content): ?>
-  <div class="row-fluid <?php print $classes; ?>">
+  <div class=" <?php print $classes; ?>">
     <?php print $content; ?>
   </div>
 <?php endif; ?>
