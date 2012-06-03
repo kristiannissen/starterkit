@@ -17,4 +17,4 @@ stylesheets[all][] = css/style.css
 ; JS
 scripts[] = js/libs/html5-3.4-respond-1.1.0.min.js
 scripts[] = js/plugins.js
-scripts[] = js/scripts.js
+scripts[] = js/script.js

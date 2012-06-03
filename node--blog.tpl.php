@@ -79,7 +79,7 @@
  */
 
 hide($content['links']);
-
+hide($content['comments']);
 ?>
 <!-- node--blog.tpl.php //-->
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
@@ -101,6 +101,8 @@ hide($content['links']);
     </header>
 
     <?php print render($content) ?>
+
+    <?php print render($content['comments']) ?>
 
   </article>
 </div>

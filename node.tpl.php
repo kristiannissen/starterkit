@@ -92,8 +92,7 @@ hide($content['field_tags']);
 				</headergroup>
       <?php endif; ?>
 
-      
-       <?php if ($display_submitted): ?>
+     <?php if ($display_submitted): ?>
 				<p>
          	<?php print $submitted ?> <time datetime="<?php print format_date($created, 'custom', 'Y-m-d') ?>"><?php print format_date($created, 'custom', 'Y-m-d') ?></time>
        	</p>

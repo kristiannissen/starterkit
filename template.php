@@ -1,5 +1,20 @@
 <?php
 /**
+ * @file
+ */
+
+/*
+ * template_preprocess_page($variables)
+ */
+function starterkit_preprocess_html(&$variables) {
+  // Add bootstrap js to page_bottom
+  drupal_add_js('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', 'external', 'footer');
+  drupal_add_js(path_to_theme() .'/js/libs/bootstrap/bootstrap.js', 'file', 'footer'); 
+  drupal_add_js(path_to_theme() .'/js/libs/bootstrap/transition.js', 'file', 'footer');
+  drupal_add_js(path_to_theme() .'/js/libs/bootstrap/collapse.js', 'file', 'footer');
+}
+
+/**
  * template_preprocess_block($variables)
  */
 function starterkit_preprocess_block(&$variables) {
@@ -152,19 +167,20 @@ function starterkit_field__body($vars) {
   return $output;
 }
 /**
- * TODO: Document this
+ * Tags can be themed depending on node type
+ * starterkit_field__field_tags__article() will only affect tags on articles
  */
-function starterkit_field__field_tags__article($vars) {
-	$output = '';
+function starterkit_field__field_tags($vars) {
+	$output = array();
 	
 	foreach ($vars['items'] as $delta => $item) {
-		$output .= render($item);
+		$output[] = render($item);
 	}
 	
-	return $output;
+	return implode(' ', $output);
 }
 /**
- * TODO: Document this
+ * Drupal 7 only allows images to be uploaded to articles
  */
 function starterkit_field__field_image__article($variables) {
 	$output = '';

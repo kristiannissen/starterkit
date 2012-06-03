@@ -7,3 +7,8 @@
 .wrapper {
   padding-top: 60px;
 }
+/* Reset figure */
+figure {
+  margin: 0;
+  padding: 0;
+}
