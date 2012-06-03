@@ -10,8 +10,8 @@ regions[sidebar] = Sidebar
 regions[herounit] = HeroUnit
 
 ; CSS
-stylesheets[all][] = css/bootstrap-responsive.min.css
-stylesheets[all][] = css/bootstrap.min.css
+stylesheets[all][] = css/bootstrap-responsive.css
+stylesheets[all][] = css/bootstrap.css
 stylesheets[all][] = css/style.css
 
 ; JS
