@@ -39,6 +39,7 @@ function starterkit_preprocess_region(&$variables) {
 }
 /**
  * template_form_alter(&$form, &$form_state, $form_id)
+ * FIXME: Should be done using FORM_ID instead
  */
 function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	if ($form_id == 'user_login_block') {
@@ -60,11 +61,25 @@ function starterkit_form_alter(&$form, &$form_state, $form_id) {
 		);
 		unset($form['search_block_form']['#title']);
 	}
-	
+	// Form: user_register_form
 	if ($form_id == 'user_register_form') {
 		$form['#attributes'] = array(
 			'class' => array('form-horizontal'),
 		);
+	}
+	// Contact form
+	if ($form_id == 'contact_site_form') {
+		$form['actions']['submit']['#prefix'] = null;
+		$form['actions']['submit']['#prefix'] = '<div>';
+		$form['actions']['submit']['#suffix'] = null;
+		$form['actions']['submit']['#suffix'] = '</div>';
+	}
+	// user_pass
+	if ($form_id == 'user_pass') {
+		$form['actions']['submit']['#prefix'] = null;
+		$form['actions']['submit']['#prefix'] = '<div>';
+		$form['actions']['submit']['#suffix'] = null;
+		$form['actions']['submit']['#suffix'] = '</div>';
 	}
 }
 /**
@@ -296,8 +311,9 @@ function starterkit_form_element($variables) {
  */
 function starterkit_radios($variables) {
   $element = $variables['element'];
+	$title = $element['#title'];
 
-  return '<div class="control-group"><div class="controls">'. $element['#children'] .'</div></div>';
+  return '<div class="control-group"><label class="control-label">'. $title .'</label><div class="controls">'. $element['#children'] .'</div></div>';
 }
 /** 
  * theme_radio($variables)
@@ -312,7 +328,47 @@ function starterkit_radio($variables) {
   }
   _form_set_class($element, array('form-radio'));
 
-  return '<input' . drupal_attributes($element['#attributes']) . ' />';
+  return '<label class="radio"><input' . drupal_attributes($element['#attributes']) . ' />'. $element['#title'] .'</label>';
+}
+/**
+ * theme_form_element_label($variables)
+ */
+function starterkit_form_element_label($variables) {
+	$element = $variables['element'];
+  // This is also used in the installer, pre-database setup.
+  $t = get_t();
+
+  // If title and required marker are both empty, output no label.
+  if ((!isset($element['#title']) || $element['#title'] === '') && empty($element['#required'])) {
+    return '';
+  }
+
+  // If the element is required, a required marker is appended to the label.
+  $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '';
+
+  $title = filter_xss_admin($element['#title']);
+
+  $attributes = array();
+  // Style the label as class option to display inline with the element.
+  if ($element['#title_display'] == 'after') {
+    $attributes['class'] = 'option';
+  }
+  // Show label only to screen readers to avoid disruption in visual flows.
+  elseif ($element['#title_display'] == 'invisible') {
+    $attributes['class'] = 'element-invisible';
+  }
+
+  if (!empty($element['#id'])) {
+    $attributes['for'] = $element['#id'];
+  }
+
+	// If type is radio
+	if ($element['#type'] == 'radio') {
+		return '';
+	}
+
+  // The leading whitespace helps visually separate fields from inline labels.
+  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
 }
 /**
  * theme_textarea($variables)
