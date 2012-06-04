@@ -28,6 +28,13 @@
 				<?php if ($title): ?>
 					<h1><?php print $title ?></h1>
 				<?php endif ?>
+				<?php if ($tabs): ?>
+					<div class="row-fluid">
+						<div class="span12">
+							<?php print render($tabs) ?>
+						</div>
+					</div>
+				<?php endif ?>
 				<div class="row-fluid">
 					<div class="span8">
 					<?php if ($page['content']): ?>
