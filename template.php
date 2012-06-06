@@ -57,7 +57,7 @@ function starterkit_form_alter(&$form, &$form_state, $form_id) {
 		// search_block_form
 		$form['search_block_form']['#attributes'] = array(
 			'class' => array('search-query', 'input-medium'),
-			'placeholder' => $form['search_block_form']['#title'],
+			'placeholder' => array_key_exists('#title', $form['search_block_form']) ? $form['search_block_form']['#title'] : '',
 		);
 		unset($form['search_block_form']['#title']);
 	}
@@ -164,8 +164,8 @@ function starterkit_status_messages($variables) {
 function starterkit_css_alter(&$css) {
   foreach ($css as $mod => $val) {
     // Remove modules
-    if (stripos($mod, 'modules') !== false) {
-      unset($css[$mod]);
+    if (stripos($mod, 'modules') !== false) {      
+			unset($css[$mod]);
     }
   }
 }
@@ -312,7 +312,9 @@ function starterkit_form_element($variables) {
 function starterkit_radios($variables) {
   $element = $variables['element'];
 	$title = $element['#title'];
-
+	
+	unset($variables['element']['#title']);
+	
   return '<div class="control-group"><label class="control-label">'. $title .'</label><div class="controls">'. $element['#children'] .'</div></div>';
 }
 /** 
