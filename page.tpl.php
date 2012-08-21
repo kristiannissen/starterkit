@@ -26,7 +26,9 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<?php if ($title): ?>
-					<h1><?php print $title ?></h1>
+					<div class="page-header">
+						<h1><?php print $title ?></h1>
+					</div>
 				<?php endif ?>
 				<?php if ($tabs): ?>
 					<div class="row-fluid">
