@@ -82,6 +82,7 @@ hide($content['links']);
 hide($content['field_tags']);
 
 ?>
+<!-- node.tpl.php //-->
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
   <article>
     <header>
