@@ -13,7 +13,18 @@ function starterkit_preprocess_html(&$variables) {
   drupal_add_js(path_to_theme() .'/js/libs/bootstrap/transition.js', 'file', 'footer');
   drupal_add_js(path_to_theme() .'/js/libs/bootstrap/collapse.js', 'file', 'footer');
 }
+/**
+ * template_preprocess_taxonomy_term(&$variables)
+ */
+function starterkit_preprocess_taxonomy_term(&$variables) {
 
+}
+/**
+ * template_preprocess_page(&$variables)
+ */
+function starterkit_preprocess_page(&$variables) {
+
+}
 /**
  * template_preprocess_block($variables)
  */
@@ -28,7 +39,15 @@ function starterkit_preprocess_block(&$variables) {
 	}
 	
 	if ($block->module == 'system' && $block->delta == 'main') {
-		
+		// This enables you to customize the layout of the front page content block
+		if ($variables['is_front']) {
+			$variables['theme_hook_suggestions'][] = 'block__system__main_front';
+		}
+		// Taxonomy term list page
+		if (arg(0) == 'taxonomy') {
+			// This can be customized even more
+			$variables['theme_hook_suggestions'][] = 'block__system__main_taxonomy';
+		}
 	}
 }
 /**
