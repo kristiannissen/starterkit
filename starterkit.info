@@ -7,12 +7,12 @@ regions[header] = Header
 regions[content] = Content
 regions[footer] = Footer
 regions[sidebar] = Sidebar
-regions[herounit] = HeroUnit
+regions[jumbotron] = Jumbotron
 
 ; CSS
 stylesheets[all][] = css/bootstrap-responsive.css
 stylesheets[all][] = css/bootstrap.css
-stylesheets[all][] = css/style.css
+stylesheets[all][] = css/layout.css
 
 ; JS
 scripts[] = js/libs/html5-3.4-respond-1.1.0.min.js
