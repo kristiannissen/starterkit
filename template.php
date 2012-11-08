@@ -29,32 +29,21 @@ function starterkit_preprocess_page(&$variables) {
  * template_preprocess_block($variables)
  */
 function starterkit_preprocess_block(&$variables) {
-	// Add .span to blocks
-  $variables['classes_array'][] = 'span';
-  
   $block = $variables['block'];
-	
-	if (in_array($block->region, array('sidebar', 'herounit', 'footer'))) {
-		$variables['content'] = '<section>'. $variables['content'] .'</section>';
-	}
-	
-	if ($block->module == 'system' && $block->delta == 'main') {
-		// This enables you to customize the layout of the front page content block
-		if ($variables['is_front']) {
-			$variables['theme_hook_suggestions'][] = 'block__system__main_front';
-		}
-		// Taxonomy term list page
-		if (arg(0) == 'taxonomy') {
-			// This can be customized even more
-			$variables['theme_hook_suggestions'][] = 'block__system__main_taxonomy';
-		}
-	}
 }
 /**
  * template_preprocess_region(&$variables)
  */
 function starterkit_preprocess_region(&$variables) {
-  $variables['classes_array'][] = 'row-fluid';
+  $blocks = 0;
+
+  foreach ($variables['elements'] as $delta => $block) {
+    if (substr($delta, 0, 1) != '#') {
+      $blocks++;
+    }
+  }
+
+  $variables['classes_array'][] = 'blocks-'. $blocks;
 }
 /**
  * template_form_alter(&$form, &$form_state, $form_id)
@@ -223,7 +212,7 @@ function starterkit_field__field_image__article($variables) {
 		$output .= render($item);
 	}
 	
-	return '<figure>'. $output .'</figure>';
+	return $output;
 }
 /**
  * theme_button($variables)

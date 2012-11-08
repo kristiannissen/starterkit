@@ -17,6 +17,14 @@
   </div>
 </div>
 
+<?php if ($is_front && $page['jumbotron']): ?>
+  <div class="jumbotron masthead">
+    <div class="container">
+      <?php print render($page['jumbotron']) ?>
+    </div>
+  </div>
+<?php endif ?>
+
 <div class="container-fluid">
 	<div class="wrapper">
 		<?php if ($messages): ?>

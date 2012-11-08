@@ -1,4 +1,4 @@
-name = Drupal HTML5 Boilerplate Starter Kit
+name = Starterkit
 core = 7.x
 engine = phptemplate
 
@@ -10,8 +10,8 @@ regions[sidebar] = Sidebar
 regions[jumbotron] = Jumbotron
 
 ; CSS
-stylesheets[all][] = css/bootstrap-responsive.css
-stylesheets[all][] = css/bootstrap.css
+stylesheets[all][] = css/bootstrap-responsive.min.css
+stylesheets[all][] = css/bootstrap.min.css
 stylesheets[all][] = css/layout.css
 
 ; JS
