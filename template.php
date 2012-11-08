@@ -172,8 +172,8 @@ function starterkit_status_messages($variables) {
 function starterkit_css_alter(&$css) {
   foreach ($css as $mod => $val) {
     // Remove modules
-    if (stripos($mod, 'modules') !== false) {      
-			unset($css[$mod]);
+    if (stripos($mod, 'modules') !== false) {
+      unset($css[$mod]);
     }
   }
 }
