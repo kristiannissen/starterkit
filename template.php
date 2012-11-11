@@ -8,10 +8,44 @@
  */
 function starterkit_preprocess_html(&$variables) {
   // Add bootstrap js to page_bottom
-  drupal_add_js('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', 'external', 'footer');
-  drupal_add_js(path_to_theme() .'/js/libs/bootstrap/bootstrap.js', 'file', 'footer'); 
-  drupal_add_js(path_to_theme() .'/js/libs/bootstrap/transition.js', 'file', 'footer');
-  drupal_add_js(path_to_theme() .'/js/libs/bootstrap/collapse.js', 'file', 'footer');
+#  drupal_add_js('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', array(
+#    'type' => 'external',
+#    'scope' => 'footer',
+#  ));
+  $js_files = array(
+    'bootstrap.min.js',
+    'alert.js',
+    'button.js',
+    'carousel.js',
+    'collapse.js',
+    'dropdown.js',
+    'modal.js',
+    'popover.js',
+    'scrollspy.js',
+    'tab.js',
+    'tooltip.js',
+    'transition.js',
+    'typeahead.js',
+  );
+
+  foreach ($js_files as $js_file) {
+    drupal_add_js(path_to_theme() .'/js/libs/bootstrap/'. $js_file, array(
+      'type' => 'file',
+      'scope' => 'footer',
+    ));
+  }
+
+  $js_app_files = array(
+    'plugins.js',
+    'script.js',
+  );
+
+  foreach ($js_app_files as $js_app_file) {
+    drupal_add_js(path_to_theme() .'/js/'. $js_app_file, array(
+      'type' => 'file',
+      'scope' => 'footer',
+    ));
+  }
 }
 /**
  * template_preprocess_taxonomy_term(&$variables)

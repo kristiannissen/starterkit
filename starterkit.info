@@ -10,11 +10,12 @@ regions[sidebar] = Sidebar
 regions[jumbotron] = Jumbotron
 
 ; CSS
-stylesheets[all][] = css/bootstrap-responsive.min.css
 stylesheets[all][] = css/bootstrap.min.css
+stylesheets[all][] = css/bootstrap-responsive.min.css
+stylesheets[all][] = css/prettify.css
 stylesheets[all][] = css/layout.css
 
-; JS
-scripts[] = js/libs/html5-3.4-respond-1.1.0.min.js
-scripts[] = js/plugins.js
-scripts[] = js/script.js
+; JS are loaded inside template.php
+; scripts[] = js/libs/html5-3.4-respond-1.1.0.min.js
+; scripts[] = js/plugins.js
+; scripts[] = js/script.js

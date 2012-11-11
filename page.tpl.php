@@ -1,17 +1,17 @@
 <!-- page.tpl.php //-->
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <div class="container">
+      <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </a>
+      </button>
       <?php if ($site_name): ?>
 				<a class="brand" href="<?php print $front_page ?>"><?php print $site_name ?></a>
 			<?php endif ?>
-      <div class="nav-collapse">
-        <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'nav')))); ?>
+      <div class="nav-collapse collapse">
+        <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('nav')))); ?>
       </div><!--/.nav-collapse -->
     </div>
   </div>
