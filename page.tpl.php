@@ -17,58 +17,69 @@
   </div>
 </div>
 
-<?php if ($is_front && $page['jumbotron']): ?>
-  <div class="jumbotron masthead">
-    <div class="container">
-      <?php print render($page['jumbotron']) ?>
-    </div>
-  </div>
-<?php endif ?>
-
 <div class="container-fluid">
-	<div class="wrapper">
-		<?php if ($messages): ?>
-			<?php print $messages ?>
-		<?php endif ?>
-		
-		<div class="row-fluid">
-			<div class="span12">
-				<?php if ($title): ?>
-					<div class="page-header">
-						<h1><?php print $title ?></h1>
-					</div>
-				<?php endif ?>
-				<?php if ($tabs): ?>
-					<div class="row-fluid">
-						<div class="span12">
-							<?php print render($tabs) ?>
-						</div>
-					</div>
-				<?php endif ?>
-				<div class="row-fluid">
-					<div class="span8">
-					<?php if ($page['content']): ?>
-						<?php print render($page['content']) ?>
-					<?php endif ?>
-					</div>
-					<div class="span4">
-						<aside>
-							<?php if ($page['sidebar']): ?>
-								<?php print render($page['sidebar']) ?>
-							<?php endif ?>
-						</aside>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-		<hr>
-	
-		<footer>
-	    <?php if ($page['footer']): ?>
-	    	<?php print render($page['footer']) ?>
-	    <?php endif ?>
-	  </footer>
-	</div>
+  <?php if ($messages): ?>
+    <section role="alert">
+      <?php print $messages ?>
+    </section>
+  <?php endif ?>
+  
+  <section role="main">
+    <?php if ($page['sidebar']): ?>
+      <div class="row-fluid">
+        <div class="span8">
+          <?php if ($title): ?>
+            <div class="page-header">
+              <?php print $title ?>
+            </div>
+          <?php endif ?>
+          
+          <?php if ($tabs): ?>
+            <div class="row-fluid">
+              <div class="span8">
+                <?php print render($tabs) ?>
+              </div>
+            </div>
+          <?php endif ?>
+
+          <?php print render($page['content']) ?>
+        </div>
+
+        <div class="span4">
+          <aside>
+          <?php print render($page['sidebar']) ?>
+          </aside>
+        </div>
+      </div>
+    <?php else: ?>
+      <div class="row-fluid">
+        <div class="span12">
+          <?php if ($title): ?>
+            <div class="page-header">
+              <h1><?php print $title ?></h1>
+            </div>
+          <?php endif ?>
+
+          <?php if ($tabs): ?>
+            <div class="row-fluid">
+              <div class="span12">
+                <?php print render($tabs) ?>
+              </div>
+            </div>
+          <?php endif ?>
+
+          <?php print render($page['content']) ?>
+        </div>
+      </div>
+    <?php endif ?>
+  </section>
+
 </div> <!-- /container -->
 
+<div class="container-fluid">
+  <footer>
+    <?php if ($page['footer']): ?>
+      <?php print render($page['footer']) ?>
+    <?php endif ?>
+  </footer>
+</div>

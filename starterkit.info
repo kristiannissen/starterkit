@@ -7,7 +7,6 @@ regions[header] = Header
 regions[content] = Content
 regions[footer] = Footer
 regions[sidebar] = Sidebar
-regions[jumbotron] = Jumbotron
 
 ; CSS
 stylesheets[all][] = css/bootstrap.min.css
