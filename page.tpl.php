@@ -30,7 +30,7 @@
         <div class="span8">
           <?php if ($title): ?>
             <div class="page-header">
-              <?php print $title ?>
+              <h1><?php print $title ?></h1>
             </div>
           <?php endif ?>
           

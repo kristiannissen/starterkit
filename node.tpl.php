@@ -79,12 +79,11 @@
  */
 
 hide($content['links']);
-hide($content['field_tags']);
 
 ?>
 <!-- node.tpl.php //-->
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-  <article>
+  <article class="<?php print $view_mode ?>">
     <header>
       <?php if (!$page): ?>
 				<headergroup>
@@ -99,7 +98,6 @@ hide($content['field_tags']);
        	</p>
 			<?php endif ?>
       
-    
     </header>
 
     <?php print render($content) ?>
