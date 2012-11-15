@@ -28,20 +28,12 @@
     <?php if ($page['sidebar']): ?>
       <div class="row-fluid">
         <div class="span8">
-          <?php if ($title): ?>
+          <?php if (!$is_front && $title): ?>
             <div class="page-header">
               <h1><?php print $title ?></h1>
             </div>
           <?php endif ?>
           
-          <?php if ($tabs): ?>
-            <div class="row-fluid">
-              <div class="span8">
-                <?php print render($tabs) ?>
-              </div>
-            </div>
-          <?php endif ?>
-
           <?php print render($page['content']) ?>
         </div>
 
@@ -54,17 +46,9 @@
     <?php else: ?>
       <div class="row-fluid">
         <div class="span12">
-          <?php if ($title): ?>
+          <?php if (!$is_front && $title): ?>
             <div class="page-header">
               <h1><?php print $title ?></h1>
-            </div>
-          <?php endif ?>
-
-          <?php if ($tabs): ?>
-            <div class="row-fluid">
-              <div class="span12">
-                <?php print render($tabs) ?>
-              </div>
             </div>
           <?php endif ?>
 
