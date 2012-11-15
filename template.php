@@ -486,31 +486,3 @@ function starterkit_menu_local_task($variables) {
 
 	return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
 }
-/** 
- * theme_node_recent_content()
- */
-function starterkit_node_recent_content($variables) {
-  $node = $variables['node'];
-  $output = '';
-  
-  if ($items = field_get_items('node', $node, 'body')) {
-    $output .= '<div class="node-recent">'. render(field_view_value('node', $node, 'body', $items[0], 'full')) .'</div>';
-  }
-
-  if ($items = field_get_items('node', $node, 'field_reference')) {
-    $nids = array();
-    foreach ($items as $item) {
-      array_push($nids, $item['node_ref_nid']);
-    }
-    if ($nids) {
-      $nodes = node_load_multiple($nids);
-      foreach ($nodes as $node) {
-        $output .= theme('node_recent_content', array(
-          'node' => $node,
-        ));
-      }
-    }
-  }
-
-  return $output;
-}
