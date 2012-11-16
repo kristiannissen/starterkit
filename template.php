@@ -32,6 +32,7 @@ function starterkit_preprocess_html(&$variables) {
     drupal_add_js(path_to_theme() .'/js/libs/bootstrap/'. $js_file, array(
       'type' => 'file',
       'scope' => 'footer',
+      'weight' => 5,
     ));
   }
 
@@ -128,30 +129,18 @@ function starterkit_form_alter(&$form, &$form_state, $form_id) {
  * theme_image_formatter($variables)
  */
 function starterkit_image_formatter($variables) {
-	$item = $variables['item'];
+  $item = $variables['item'];
   $image = array(
-    'path' => $item['uri'], 
-    'alt' => $item['alt'],
+    'path' => $item['uri'],
   );
 
-  if (isset($item['attributes'])) {
-    $image['attributes'] = $item['attributes'];
+  if (array_key_exists('alt', $item)) {
+    $image['alt'] = $item['alt'];
   }
 
-  // Do not output an empty 'title' attribute.
-  if (drupal_strlen($item['title']) > 0) {
-    $image['title'] = $item['title'];
-  }
+  $output = '';
 
-	$output = theme('image', $image);
-
-  if (!empty($variables['path']['path'])) {
-    $path = $variables['path']['path'];
-    $options = $variables['path']['options'];
-    // When displaying an image inside a link, the html option must be TRUE.
-    $options['html'] = TRUE;
-    $output = l($output, $path, $options);
-  }
+  $output .= theme('image', $image);
 
   return $output;
 }
@@ -241,10 +230,42 @@ function starterkit_field__field_tags($vars) {
  */
 function starterkit_field__field_image__article($variables) {
 	$output = '';
-	
-	foreach ($variables['items'] as $delta => $item) {
-		$output .= render($item);
-	}
+  $node = $variables['element']['#object'];
+  $carousel_id = preg_replace('/[^a-z0-9]/', '', strtolower($node->title));
+
+  if (count($variables['items']) > 1) {
+    $output .= '<div class="carousel slide" id="'. $carousel_id .'">';
+    $output .= '<div class="carousel-inner">';
+
+    foreach ($variables['items'] as $delta => $item) {
+      if ($delta == 0) {
+        $output .= '<div class="item active">'. render($item) .'</div>';
+      }
+      else {
+        $output .= '<div class="item">'. render($item) .'</div>';
+      }
+    }
+
+    $output .= '</div>';
+    
+    $output .= '<a class="carousel-control left" href="#'. $carousel_id .'" data-slide="prev">&lsaquo;</a>';
+    $output .= '<a class="carousel-control right" href="#'. $carousel_id .'" data-slide="next">&rsaquo;</a>';
+
+    $output .= '</div>';
+  
+    drupal_add_js('$(".carousel").carousel({
+        interval: 2000
+      });', array(
+      'type' => 'inline',
+      'scope' => 'footer',
+      'weight' => 6,
+    ));
+  }
+  else {
+    foreach ($variables['items'] as $delta => $item) {
+      $output .= render($item);
+    }
+  }
 	
 	return $output;
 }
