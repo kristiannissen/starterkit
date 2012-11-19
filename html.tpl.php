@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <?php print $styles; ?>
-  <?php print $scripts; ?>
+  <?php /*print $scripts;*/ ?>
 
 	<!--[if lt IE 9]>
 		<script src="js/libs/html5-3.4-respond-1.1.0.min.js"></script>

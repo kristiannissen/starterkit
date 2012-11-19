@@ -12,6 +12,19 @@ function starterkit_preprocess_html(&$variables) {
 #    'type' => 'external',
 #    'scope' => 'footer',
 #  ));
+  $js_base = array(
+    'jquery-1.7.2.min.js',
+    'modernizr.min.js',
+  );
+
+  foreach ($js_base as $js_file) {
+    drupal_add_js(path_to_theme() .'/js/libs/'. $js_file, array(
+      'type' => 'file',
+      'scope' => 'footer',
+      'weight' => 4,
+    ));
+  }
+  
   $js_files = array(
     'bootstrap.min.js',
     'alert.js',
@@ -45,6 +58,7 @@ function starterkit_preprocess_html(&$variables) {
     drupal_add_js(path_to_theme() .'/js/'. $js_app_file, array(
       'type' => 'file',
       'scope' => 'footer',
+      'weight' => 6,
     ));
   }
 }
@@ -252,7 +266,7 @@ function starterkit_field__field_image__article($variables) {
     $output .= '<a class="carousel-control right" href="#'. $carousel_id .'" data-slide="next">&rsaquo;</a>';
 
     $output .= '</div>';
-  
+    /*
     drupal_add_js('$(".carousel").carousel({
         interval: 2000
       });', array(
@@ -260,6 +274,7 @@ function starterkit_field__field_image__article($variables) {
       'scope' => 'footer',
       'weight' => 6,
     ));
+    */
   }
   else {
     foreach ($variables['items'] as $delta => $item) {
