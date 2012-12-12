@@ -22,39 +22,28 @@ function starterkit_preprocess_html(&$variables) {
   }
   
   $js_files = array(
-    'bootstrap.min.js',
-    'alert.js',
-    'button.js',
-    'carousel.js',
-    'collapse.js',
-    'dropdown.js',
-    'modal.js',
-    'popover.js',
-    'scrollspy.js',
-    'tab.js',
-    'tooltip.js',
-    'transition.js',
-    'typeahead.js',
+    '/js/libs/bootstrap/bootstrap.min.js',
+    '/js/libs/bootstrap/alert.js',
+    '/js/libs/bootstrap/button.js',
+    '/js/libs/bootstrap/carousel.js',
+    '/js/libs/bootstrap/collapse.js',
+    '/js/libs/bootstrap/dropdown.js',
+    '/js/libs/bootstrap/modal.js',
+    '/js/libs/bootstrap/popover.js',
+    '/js/libs/bootstrap/scrollspy.js',
+    '/js/libs/bootstrap/tab.js',
+    '/js/libs/bootstrap/tooltip.js',
+    '/js/libs/bootstrap/transition.js',
+    '/js/libs/bootstrap/typeahead.js',
+		'/js/plugins.js',
+    '/js/script.js',
   );
 
   foreach ($js_files as $js_file) {
-    drupal_add_js(path_to_theme() .'/js/libs/bootstrap/'. $js_file, array(
+    drupal_add_js(path_to_theme() . $js_file, array(
       'type' => 'file',
       'scope' => 'footer',
       'weight' => 5,
-    ));
-  }
-
-  $js_app_files = array(
-    'plugins.js',
-    'script.js',
-  );
-
-  foreach ($js_app_files as $js_app_file) {
-    drupal_add_js(path_to_theme() .'/js/'. $js_app_file, array(
-      'type' => 'file',
-      'scope' => 'footer',
-      'weight' => 6,
     ));
   }
 }
