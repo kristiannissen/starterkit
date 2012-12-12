@@ -100,7 +100,7 @@ hide($content['field_presentation']);
   
   <?php if ($view_mode == 'teaser'): ?>
     <p>
-      <?php print l(t('Read more'), $node_url) ?>
+      <?php print l(t('Read more'), 'node/'. $node->id) ?>
     </p>
   <?php endif ?>
 
