@@ -79,15 +79,14 @@
  */
 
 hide($content['links']);
-hide($content['field_presentation']);
 
 ?>
 <!-- node.tpl.php //-->
 <article class="<?php print $classes ?>">
-  <?php if ($view_mode == 'full'): ?>
-    <div class="page-header">
-      <h1><?php print $title; ?></h1>
-    </div>
+  <?php if ($view_mode == 'teaser'): ?>
+    <header>
+			<?php print l("<h1>{$title}</h1>", 'node/'. $node->nid, array('html' => TRUE)) ?>
+		</header>
   <?php endif; ?>
 
  <?php if ($display_submitted): ?>
@@ -100,8 +99,7 @@ hide($content['field_presentation']);
   
   <?php if ($view_mode == 'teaser'): ?>
     <p>
-      <?php print l(t('Read more'), 'node/'. $node->id) ?>
+      <?php print l(t('Read more'), 'node/'. $node->nid) ?>
     </p>
   <?php endif ?>
-
 </article>
