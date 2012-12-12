@@ -8,11 +8,7 @@
  */
 function starterkit_preprocess_html(&$variables) {
   // Add bootstrap js to page_bottom
-#  drupal_add_js('//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', array(
-#    'type' => 'external',
-#    'scope' => 'footer',
-#  ));
-  $js_base = array(
+	$js_base = array(
     'jquery-1.7.2.min.js',
     'modernizr.min.js',
   );
@@ -140,25 +136,6 @@ function starterkit_form_alter(&$form, &$form_state, $form_id) {
 	}
 }
 /**
- * theme_image_formatter($variables)
- */
-function starterkit_image_formatter($variables) {
-  $item = $variables['item'];
-  $image = array(
-    'path' => $item['uri'],
-  );
-
-  if (array_key_exists('alt', $item)) {
-    $image['alt'] = $item['alt'];
-  }
-
-  $output = '';
-
-  $output .= theme('image', $image);
-
-  return $output;
-}
-/**
  * theme_status_messages($variables)
  */
 function starterkit_status_messages($variables) {
@@ -242,7 +219,7 @@ function starterkit_field__field_tags($vars) {
 /**
  * Drupal 7 only allows images to be uploaded to articles
  */
-function starterkit_field__field_image__article($variables) {
+function starterkit_field__field_image($variables) {
 	$output = '';
   $node = $variables['element']['#object'];
   $carousel_id = preg_replace('/[^a-z0-9]/', '', strtolower($node->title));
@@ -266,15 +243,6 @@ function starterkit_field__field_image__article($variables) {
     $output .= '<a class="carousel-control right" href="#'. $carousel_id .'" data-slide="next">&rsaquo;</a>';
 
     $output .= '</div>';
-    /*
-    drupal_add_js('$(".carousel").carousel({
-        interval: 2000
-      });', array(
-      'type' => 'inline',
-      'scope' => 'footer',
-      'weight' => 6,
-    ));
-    */
   }
   else {
     foreach ($variables['items'] as $delta => $item) {
