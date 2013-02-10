@@ -66,6 +66,23 @@ function starterkit_preprocess_block(&$variables) {
   $block = $variables['block'];
 }
 /**
+ * theme_node_recent_block($variables)
+ */
+function starterkit_node_recent_block($variables) {
+	$nodes = $variables['nodes'];
+	$items = array();
+	
+	foreach ($nodes as $delta => $node) {
+		$items[] = theme('node_recent_content', array(
+			'node' => $node
+		));
+	}
+
+	if ($items) {
+		return theme('item_list', array('items' => $items));
+	}
+}
+/**
  * template_preprocess_region(&$variables)
  */
 function starterkit_preprocess_region(&$variables) {

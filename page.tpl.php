@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" id="main-content">
   <?php if ($messages): ?>
     <section role="alert">
       <?php print $messages ?>

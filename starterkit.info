@@ -13,6 +13,7 @@ stylesheets[all][] = css/bootstrap.min.css
 stylesheets[all][] = css/bootstrap-responsive.min.css
 stylesheets[all][] = css/prettify.css
 stylesheets[all][] = css/layout.css
+stylesheets[all][] = css/din-guide.css
 
 ; JS are loaded inside template.php
 ; scripts[] = js/libs/html5-3.4-respond-1.1.0.min.js
